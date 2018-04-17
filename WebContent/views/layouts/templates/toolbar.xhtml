@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<ui:composition>
+		<h:form>
+			<p:toolbar id="toolbar">
+				<p:toolbarGroup align="left">
+					<p:menubar>
+						<p:menuitem value="#{msg.menuHome}" icon="ui-icon-home"
+							action="index?faces-redirect=true" ajax="false"/>
+	
+						<p:menuitem value="#{msg.menuPersonnel}" icon="ui-icon-person"
+							action="personnel?faces-redirect=true" ajax="false"/>
+							
+						<p:menuitem value="#{msg.menuSubjects}" icon="ui-icon-note"
+							action="subjects?faces-redirect=true" ajax="false"/>
+							
+						<p:menuitem value="#{msg.menuCoursesAndClassrooms}" icon="ui-icon-clipboard"
+							action="coursesAndClassrooms?faces-redirect=true" ajax="false"/>
+							
+						<p:menuitem value="#{msg.menuCreateEntities}" icon="ui-icon-plus"
+							action="createEntities?faces-redirect=true" ajax="false" rendered="#{applicationBean.actualUser.admin}"/>
+	
+						<!--  <p:submenu label="#{msg['TipusMestre.Candidat.titol']}" icon="ui-icon-person">
+						  <p:menuitem value="#{msg.externs}"
+						      icon="ui-icon-person" ajax="false"
+						      action="candidats?faces-redirect=true&amp;externs=true" />
+						  <p:menuitem value="#{msg.interns}"
+						      icon="ui-icon-person" ajax="false"
+						      action="candidats?faces-redirect=true&amp;externs=false" />
+						 <p:submenu label="#{msg.paperera}" rendered="#{usuariActual.editor}" icon="ui-icon-person">
+						   <p:menuitem value="#{msg.externs}"
+						       icon="ui-icon-person" ajax="false"
+						       action="candidats?faces-redirect=true&amp;externs=true&amp;paperera=true" />
+						 </p:submenu>
+						</p:submenu> -->
+					</p:menubar>
+				</p:toolbarGroup>
+
+			  	<p:toolbarGroup align="right" styleClass="toolbarRight">
+			  		<p:menubar>
+			  			<p:submenu label="#{applicationBean.actualUser.schoolUser.person.fullName}" icon="ui-icon-person">
+			  				<p:menuitem value="My Area" action="myAreaProfessor?faces-redirect=true" ajax="false" rendered="#{applicationBean.actualUser.professor}"/>
+			    			<p:menuitem value="Logout" url="/logout?faces-redirect=true" ajax="false" />
+			    		</p:submenu>
+					</p:menubar>
+				</p:toolbarGroup>
+	
+	
+			</p:toolbar>
+	
+		</h:form>
+	
+	</ui:composition>
+
+</html>

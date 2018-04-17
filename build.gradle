@@ -1,0 +1,73 @@
+plugins {
+    id 'java'
+    id 'eclipse'
+}
+
+repositories {
+    jcenter()
+    maven { url 'https://jitpack.io' }
+}
+
+configurations.all {
+    exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    exclude group: 'org.springframework.boot', module: 'logback-classic'
+}
+
+dependencies {
+
+	// PersistenceWS Client
+	compile 'com.github.java-game-server:ws-java-client:3.0.8'
+
+    // The production code uses the SLF4J logging API at compile time
+    compile 'org.slf4j:slf4j-api:1.7.25'
+
+	// jUnit 4.12
+    testCompile 'junit:junit:4.12'
+    
+    // https://mvnrepository.com/artifact/org.jboss.weld/weld-core
+	compile 'org.jboss.weld.se:weld-se:2.2.12.Final'
+	
+	// Tomcat CDI bootstrapper
+	compile 'org.jboss.weld.servlet:weld-servlet:2.2.12.Final'
+	
+	// https://mvnrepository.com/artifact/javax.faces/javax.faces-api
+	//compile 'javax.faces:javax.faces-api:2.2'
+	
+	// https://mvnrepository.com/artifact/com.sun.faces/jsf-impl
+	compile group: 'com.sun.faces', name: 'jsf-impl', version: '2.2.17'
+	
+	// https://mvnrepository.com/artifact/com.sun.faces/jsf-api
+	compile group: 'com.sun.faces', name: 'jsf-api', version: '2.2.17'
+	
+	// https://mvnrepository.com/artifact/org.primefaces/primefaces
+	compile 'org.primefaces:primefaces:6.0'
+	
+}
+
+// To have javadocs in eclipse added - where no sources are available - we need these lines:
+// see https://docs.gradle.org/current/dsl/org.gradle.plugins.ide.eclipse.model.EclipseClasspath.html
+eclipse {	 
+  classpath {
+	downloadSources = true // default: true
+	downloadJavadoc = true // default: false
+  }
+} 
+
+// first define an array containing source folders to be always available - even when not existing already
+def eclipseSourceFolders=[
+	'src/main/java',
+	'src/main/resources',
+	'src/test/java',
+	'src/test/resources'
+];
+
+// now create those source folders when not existing, when eclipse task is executed:
+tasks.eclipse.dependsOn << {
+		
+	for (String sourceFolder: eclipseSourceFolders){ 
+		def resourceDir = new File(project.projectDir, sourceFolder)
+		if( !resourceDir.exists() && ! resourceDir.mkdirs() ) {
+    		logger.info("Not able to create %1",resourceDir);
+    	}
+	}
+}

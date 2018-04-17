@@ -1,0 +1,34 @@
+body {
+	font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
+	font-size: 12px;
+	padding-left: 5%;
+	padding-right: 5%;
+	background: none repeat-y scroll center top #F4F4F4;
+	/*margin-left: 20px;*/
+}
+
+.titlePanel {
+	height: 30px;
+    /* margin-left: 10px; */
+    padding: 8px 0 0 20px;
+    /*padding: 0.5em 1em 0.3em*/
+    font-size: 20px;
+}
+.titleApp {
+	color: #660303;
+    font-size: 24px;
+    font-style: italic;
+    font-weight: bold;
+/*     padding-right: 5%; */
+	float: right;
+	padding-bottom: 10px;
+}
+
+.footer {
+	font-size: 13px;
+	color: #818181;
+}
+
+.titleBienvenida {
+	font-size: 18px;
+}

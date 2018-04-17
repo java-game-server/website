@@ -1,0 +1,187 @@
+body {
+	font-family: Verdana, Arial;
+	font-size: 12px;
+	padding-left: 2%;
+	padding-right: 2%;
+	background: none repeat-y scroll center top #F4F4F4;
+	/*margin-left: 20px;*/
+}
+
+
+.propio {
+	background: #99fb88!important;
+	color: black !important;
+	border: #28e207!important;
+}
+
+.titlePanel {
+	height: 30px;
+    /* margin-left: 10px; */
+    padding: 5px 0 0 20px;
+    /*padding: 0.5em 1em 0.3em*/
+    font-size: 20px;
+    color: #BE0600;
+}
+.titleApp {
+	color: #660303;
+    font-size: 24px;
+    font-style: italic;
+    font-weight: bold;
+/*     padding-right: 5%; */
+	float: right;
+	padding-bottom: 10px;
+}
+
+.footer {
+	font-size: 13px;
+	color: #818181;
+}
+
+.titleBienvenida {
+	font-size: 18px;
+}
+
+.toolbarRight {
+	color: #AA274F;
+	padding-top:5px;
+}
+
+.toolbarRight a {
+	text-decoration:underline;
+}
+
+.colorTitle {
+	color: #BE0600;
+}
+
+.colorTitulo {
+	color: #BE0600;
+}
+
+.bodyCentral {
+	/*padding-left: 10%;
+	padding-right: 10%;*/
+	background: none repeat-y scroll center top #FFFFFF;
+	/*padding: 0.2em 5% !important;*/
+	padding: 10px 2% !important;
+}
+
+.bodyCentralLogin {
+	/*padding-left: 10%;
+	padding-right: 10%;*/
+	background: none repeat-y scroll center top;
+	padding: 0.2em 5% !important;
+}
+
+
+.width15{
+	width: 15%;
+}
+
+.width20{
+	width: 20%;
+}
+
+.width50{
+	width: 50%;
+}
+
+.width85{
+	width: 85%;
+}
+
+.ui-picklist .ui-picklist-list {      
+width:300px !important;
+}
+
+.ui-growl {
+	top: 40% !important;
+    left:40% !important;
+}
+
+.detalleContactoHeader {
+	font-size: 11px !important;
+}
+
+.detalleContacto {
+	font-size: 10px;
+}
+
+.sinBorde {
+	border-style:none !important;
+}
+
+.sinBordeWidth10 {
+	border-style:none !important;
+	width: 10%;
+}
+
+.sinBordeWidth80 {
+	border-style:none !important;
+	width: 80%;
+}
+
+.toolTip {
+	border:1px solid #660303;
+	font-size:11px;
+	background:#FFEFA2;
+}
+
+.ui-editor {
+	width:100% !important;
+}
+
+.link {
+	color: #AA274F !important;
+	font-weight:bold;
+}
+
+.colorRed {
+	color: red;
+}
+
+.colorGreen {
+	color: green;
+}
+.backgroundRed {
+	background: red;
+	color: white;
+}
+
+.backgroundGreen {
+	background: green;
+	color: white;
+}
+
+.iconPDF {
+	background-image: url("#{resource['images/pdf.png']}") !important; 
+	width: 14px; 
+	height: 14px; 
+	background-position: center;
+}
+
+.iconMail {
+	width: 15px; 
+	height: 12px; 
+	background-position: center;
+	background-image: url("#{resource['images/red_mail.png']}") !important; 
+}
+
+.iconOutlook {
+	width: 14px; 
+	height: 14px; 
+	background-position: center;
+	background-image: url("#{resource['images/outlook.png']}") !important; 
+}
+
+.normal { }
+
+.deleted {
+	text-decoration:line-through;
+	background: white !important;
+}
+
+.fc-sat, .fc-sun {
+	background: #D3D3D3 !important;
+}
+
