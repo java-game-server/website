@@ -20,7 +20,7 @@ public class ToolbarBean
 
 	public String logout()
 	{
-		//authenticatedUser.setUser(null);
+		authenticatedUser.setUser(null);
 		return "login?faces-redirect=true";
 	}
 }

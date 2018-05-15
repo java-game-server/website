@@ -19,8 +19,12 @@
 
 				<p:panelGrid columns="2">
 					<f:facet name="header">#{msg.register}</f:facet>
-
-					<h:outputLabel for="username" value="#{msg.username}:" />
+					
+					<h:outputLabel for="email" value="#{msg.email}:" />
+					<p:inputText id="email" value="#{loginRegisterBean.email}"
+						required="true" />
+						
+						<h:outputLabel for="username" value="#{msg.username}:" />
 					<p:inputText id="username" value="#{loginRegisterBean.username}"
 						required="true" />
 
