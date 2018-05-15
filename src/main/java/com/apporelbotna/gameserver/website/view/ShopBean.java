@@ -16,7 +16,6 @@ import com.apporelbotna.gameserver.website.model.dao.WebsiteDAO;
 @ViewScoped
 public class ShopBean implements Serializable
 {
-
     private static final long serialVersionUID = 4350005646755352314L;
 
     private List< Game > games;
@@ -35,12 +34,7 @@ public class ShopBean implements Serializable
     @PostConstruct
     public void init()
     {
-
 	games = dao.getAllGames();
-	for ( Game game : games )
-	{
-	    System.out.println( game );
-	}
     }
 
     public List< Game > getGames()
@@ -62,5 +56,4 @@ public class ShopBean implements Serializable
     {
 	this.authenticatedUser = authenticatedUser;
     }
-
 }
