@@ -8,7 +8,9 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.apporelbotna.gameserver.persistencewsclient.GameDAO;
 import com.apporelbotna.gameserver.stubs.Game;
+import com.apporelbotna.gameserver.website.model.AuthenticatedUser;
 import com.apporelbotna.gameserver.website.service.DummyGameFactory;
 import com.apporelbotna.gameserver.website.util.Faces;
 
@@ -18,8 +20,9 @@ public class GameLibraryBean implements Serializable
 {
 	private static final long serialVersionUID = -2966068452310876590L;
 
-//	@Inject
-//	AuthenticatedUser authenticatedUser; TODO enable when WSClient
+	@Inject
+	AuthenticatedUser authenticatedUser;
+	
 	@Inject
 	private DummyGameFactory gameFactory;
 
@@ -34,8 +37,9 @@ public class GameLibraryBean implements Serializable
 	@PostConstruct
 	public void init()
 	{
-		// games = GameDAO.findGames(AuthenticatedUser.getUser()); TODO replace when WSClient
-		games = gameFactory.createGames(50);
+		GameDAO dao = new GameDAO();
+		games = dao.findAllGamesByUser(authenticatedUser.getUser());
+		//games = gameFactory.createGames(50);
 	}
 
 	public List<Game> getGames()

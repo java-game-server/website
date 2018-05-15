@@ -30,7 +30,7 @@ public class LoginRegisterBean implements Serializable
 
     public String login()
     {
-	Token token = dao.login( username, password );
+	Token token = dao.login( email, password );
 	if ( token == null )
 	{
 	    System.out.println( "invalid credentials" );
@@ -38,7 +38,7 @@ public class LoginRegisterBean implements Serializable
 	    Faces.error( "Bad credentials" );
 	    return null;
 	}
-	authenticatedUser.setUser( dao.getUserInformation( username ) );
+	authenticatedUser.setUser( dao.getUserInformation( email ) );
 
 	if ( authenticatedUser.isAdmin() )
 	{
