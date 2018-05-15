@@ -8,10 +8,9 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.apporelbotna.gameserver.persistencewsclient.GameDAO;
 import com.apporelbotna.gameserver.stubs.Game;
 import com.apporelbotna.gameserver.website.model.AuthenticatedUser;
-import com.apporelbotna.gameserver.website.service.DummyGameFactory;
+import com.apporelbotna.gameserver.website.model.dao.WebsiteDAO;
 import com.apporelbotna.gameserver.website.util.Faces;
 
 @Named
@@ -22,9 +21,9 @@ public class GameLibraryBean implements Serializable
 
 	@Inject
 	AuthenticatedUser authenticatedUser;
-	
+
 	@Inject
-	private DummyGameFactory gameFactory;
+	private WebsiteDAO websiteDAO;
 
 	private List<Game> games;
 	private Game selectedGame;
@@ -37,9 +36,7 @@ public class GameLibraryBean implements Serializable
 	@PostConstruct
 	public void init()
 	{
-		GameDAO dao = new GameDAO();
-		games = dao.findAllGamesByUser(authenticatedUser.getUser());
-		//games = gameFactory.createGames(50);
+		games = websiteDAO.findAllGamesByUser(authenticatedUser.getUser());
 	}
 
 	public List<Game> getGames()
@@ -59,6 +56,6 @@ public class GameLibraryBean implements Serializable
 
 	public void play(Game game)
 	{
-		Faces.error("Oops!", "Could not found " + game.getName()+". Sorry!");
+		Faces.error("Oops!", "Could not found " + game.getName()+"... Sorry!");
 	}
 }
