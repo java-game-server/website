@@ -11,106 +11,67 @@
 	</ui:define>
 
 	<ui:define name="content">
+	<h1>WAPwwAA</h1>
 		<h:form id="form">
-			<p:dataView var="game" value="#{gameLibraryBean.games}" rows="12"
-				paginator="true" rowsPerPageTemplate="6,12,16"
-				paginatorTemplate="{CurrentPageReport} 
-					{FirstPageLink} 
-					{PreviousPageLink} 
-					{PageLinks} 
-					{NextPageLink} 
-					{LastPageLink} 
-					{RowsPerPageDropdown}"
-				gridIcon="fa fa-th-large" listIcon="fa fa-bars">
-
-				<p:dataViewGridItem>
-					<p:panel header="#{game.name}" style="text-align:center">
-						<h:panelGrid columns="1" style="width:100%">
-							<p:graphicImage url="#{game.imgUri}" />
-
-							<h:outputText value="#{game.genre}" />
-
-							<p:commandLink update=":form:gameDetail"
-								oncomplete="PF('gameDialog').show()" title="View Detail">
-								<h:outputText styleClass="ui-icon ui-icon-search"
-									style="margin:0 auto;" />
-								<f:setPropertyActionListener value="#{game}"
-									target="#{gameLibraryBean.selectedGame}" />
-							</p:commandLink>
-						</h:panelGrid>
-					</p:panel>
-				</p:dataViewGridItem>
-
-				<p:dataViewListItem>
-					<h:panelGrid columns="3" style="width:100%"
+			<p:repeat value="#{gameLibraryBean.games}" var="game">
+				<p:commandLink update=":form:gameDetail"
+					oncomplete="PF('gameDialog').show()">
+					<f:setPropertyActionListener value="#{game}"
+						target="#{gameLibraryBean.selectedGame}" />
+						
+					<h:panelGrid columns="2" style="width:100%"
 						columnClasses="logo,detail">
-						<p:graphicImage url="#{game.imgUri}" />
+
+						<h:graphicImage value="#{game.imgUri}" height="200px" />
 
 						<p:outputPanel>
 							<h:panelGrid columns="2" cellpadding="5">
-								<h:outputText value="#{msg.name}:" />
-								<h:outputText value="#{game.name}" style="font-weight: bold" />
+								<h:outputText style="font-size: 30px;" value="#{msg.name}:" />
+								<h:outputText style="font-size: 30px;" value="#{game.name}" />
 
-								<h:outputText value="#{msg.description}:" />
-								<h:outputText value="#{game.description}" />
-
-								<p:commandLink update=":form:gameDetail"
-									oncomplete="PF('gameDialog').show()" title="View Detail">
-									<h:outputText styleClass="ui-icon ui-icon-search"
-										style="margin:0 auto;" />
-									<f:setPropertyActionListener value="#{game}"
-										target="#{gameLibraryBean.selectedGame}" />
-								</p:commandLink>
+								<h:outputText style="font-size: 20px;" value="#{msg.description}:" />
+								<h:outputText style="font-size: 20px;" value="#{game.description}" />
 							</h:panelGrid>
 						</p:outputPanel>
 
 					</h:panelGrid>
-				</p:dataViewListItem>
-			</p:dataView>
+					
+				</p:commandLink>
+				<hr />
+			</p:repeat>
 
 			<p:dialog header="#{msg.game} #{msg.info}" widgetVar="gameDialog"
-				modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+				modal="true" showEffect="blind" hideEffect="explode"
+				resizable="false">
 				<p:outputPanel id="gameDetail" style="text-align:center;">
 					<p:panelGrid columns="2"
 						rendered="#{not empty gameLibraryBean.selectedGame}"
 						columnClasses="label,value">
 						<f:facet name="header">
-							<p:graphicImage url="#{gameLibraryBean.selectedGame.imgUri}"/>
+							<h:graphicImage value="#{game.imgUri}" height="500px" />
 						</f:facet>
 
 						<h:outputText value="#{msg.name}:" />
 						<h:outputText value="#{gameLibraryBean.selectedGame.name}" />
-						
+
 						<h:outputText value="#{msg.genre}:" />
 						<h:outputText value="#{gameLibraryBean.selectedGame.genre}" />
 
 						<h:outputText value="#{msg.description}:" />
 						<h:outputText value="#{gameLibraryBean.selectedGame.description}" />
-
-						<p:commandButton action="#{gameLibraryBean.play(selectedGame)}"/>
-						
-						<p:messages id="messages" closable="true" autoUpdate="true" />
 					</p:panelGrid>
+					<br />
+
+					<center>
+						<p:messages id="messages" closable="true" autoUpdate="true"
+							showDetail="true" />
+						<p:commandButton value="#{msg.play}"
+							action="#{gameLibraryBean.play}" />
+					</center>
+
 				</p:outputPanel>
 			</p:dialog>
 		</h:form>
-
-		<style type="text/css">
-/*demo*/
-.ui-dataview-list .ui-dataview-row {
-	border-bottom: 1px solid #A8A8A8;
-	padding: 25px 10px;
-}
-
-.logo {
-	width: 5%;
-}
-
-.detail {
-	width: 85%;
-	padding-left: 25px;
-}
-</style>
 	</ui:define>
 </ui:composition>
 </html>

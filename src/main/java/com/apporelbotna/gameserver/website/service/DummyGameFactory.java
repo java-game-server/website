@@ -25,7 +25,7 @@ public class DummyGameFactory
 							"Warrona",
 							"Bastante boa la vericita elleot me la follaba",
 							"6969696996.exe",
-							"pbs.twimg.com/profile_images/664270316152217601/VdrCsCKg.jpg"));
+							"http://pbs.twimg.com/profile_images/664270316152217601/VdrCsCKg.jpg"));
 		}
 
 		return games;
