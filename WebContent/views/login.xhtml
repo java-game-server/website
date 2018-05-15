@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="layouts/templates/defaultLayoutLogin.xhtml">
+	<ui:define name="title">
+		<h:outputText value="#{msg.appTitle} #{msg.login}" />
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form id="formLogin" prependId="false">
+			<center>
+				<h2>#{msg.welcome}</h2>
+				<p:messages id="messages" closable="true" autoUpdate="true" />
+
+				<p:panelGrid columns="2">
+					<f:facet name="header">#{msg.login}</f:facet>
+
+					<h:outputLabel for="username" value="#{msg.username}:" />
+					<p:inputText id="username" value="#{loginRegisterBean.username}"
+						required="true" />
+
+					<h:outputLabel for="password" value="#{msg.password}:" />
+					<p:password id="password" value="#{loginRegisterBean.password}"
+						required="true" />
+
+					<f:facet name="footer">
+						<center>
+							<p:commandButton value="#{msg.login}" type="submit"
+								action="#{loginRegisterBean.login}" />
+							<p:commandButton value="#{msg.register}" type="submit"
+								action="register.xhtml" immediate="true" />
+						</center>
+					</f:facet>
+
+				</p:panelGrid>
+			</center>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+
+</html>

@@ -29,7 +29,7 @@
 	</servlet-mapping>
 
 	<welcome-file-list>
-		<welcome-file>/views/greet.xhtml</welcome-file>
+		<welcome-file>views/login.xhtml</welcome-file>
 	</welcome-file-list>
 
 	<error-page>
