@@ -18,49 +18,49 @@ import com.apporelbotna.gameserver.website.util.Faces;
 @ViewScoped
 public class GameLibraryBean implements Serializable
 {
-    private static final long serialVersionUID = -2966068452310876590L;
+	private static final long serialVersionUID = -2966068452310876590L;
 
-    @Inject
-    AuthenticatedUser authenticatedUser;
+	@Inject
+	AuthenticatedUser authenticatedUser;
 
-    @Inject
-    private WebsiteDAO websiteDAO;
+	@Inject
+	private WebsiteDAO websiteDAO;
 
-    @Inject
-    private DummyGameFactory dummyGameFactory;
+	@Inject
+	private DummyGameFactory dummyGameFactory;
 
-    private List< Game > games;
-    private Game selectedGame;
+	private List<Game> games;
+	private Game selectedGame;
 
-    public GameLibraryBean()
-    {
-	// CDI
-    }
+	public GameLibraryBean()
+	{
+		// CDI
+	}
 
-    @PostConstruct
-    public void init()
-    {
-	// games = dummyGameFactory.createGames(50);
-	games = websiteDAO.findAllGamesByUser( authenticatedUser.getUser());
-    }
+	@PostConstruct
+	public void init()
+	{
+		// games = dummyGameFactory.createGames(50);
+		games = websiteDAO.findAllGamesByUser(authenticatedUser.getUser());
+	}
 
-    public List< Game > getGames()
-    {
-	return games;
-    }
+	public List<Game> getGames()
+	{
+		return games;
+	}
 
-    public Game getSelectedGame()
-    {
-	return selectedGame;
-    }
+	public Game getSelectedGame()
+	{
+		return selectedGame;
+	}
 
-    public void setSelectedGame(Game selectedGame)
-    {
-	this.selectedGame = selectedGame;
-    }
+	public void setSelectedGame(Game selectedGame)
+	{
+		this.selectedGame = selectedGame;
+	}
 
-    public void play()
-    {
-	Faces.error( "Oops!", "Could not found " + selectedGame.getName() + "... Sorry!" );
-    }
+	public void play()
+	{
+		Faces.error("Oops!", "Could not found " + selectedGame.getName() + "... Sorry!");
+	}
 }

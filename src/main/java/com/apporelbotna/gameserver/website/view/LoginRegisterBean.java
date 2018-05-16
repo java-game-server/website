@@ -17,7 +17,6 @@ import com.apporelbotna.gameserver.website.util.Faces;
 public class LoginRegisterBean implements Serializable
 {
 	private static final long serialVersionUID = -3970262675842802311L;
-
 	@Inject
 	private AuthenticatedUser authenticatedUser;
 
@@ -53,7 +52,6 @@ public class LoginRegisterBean implements Serializable
 			authenticatedUser.setUser(websiteDAO.getUserInformation(email));
 			return "gameLibrary?faces-redirect=true";
 		}
-
 		Faces.error("There was an error while registering. Perhaps the user already exists?");
 		return null;
 	}
