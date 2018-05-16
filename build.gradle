@@ -15,7 +15,7 @@ configurations.all {
 
 dependencies {
 	// PersistenceWS Client
-	compile 'com.github.java-game-server:ws-java-client:4.0.2'
+	compile 'com.github.java-game-server:ws-java-client:4.0.3'
 
     // The production code uses the SLF4J logging API at compile time
     compile 'org.slf4j:slf4j-api:1.7.25'
