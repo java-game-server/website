@@ -6,7 +6,7 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="layouts/templates/defaultLayoutLogin.xhtml">
+<ui:composition template="layouts/templates/defaultLayout.xhtml">
 	<ui:define name="title">
 		<h:outputText value="#{msg.appTitle} #{msg.createGame}" />
 	</ui:define>
@@ -19,33 +19,32 @@
 
 				<p:panelGrid columns="2">
 					<f:facet name="header">#{msg.register}</f:facet>
-					
+
 					<h:outputLabel for="name" value="#{msg.name}:" />
 					<p:inputText id="name" value="#{createGameBean.name}"
 						required="true" />
-						
-						<h:outputLabel for="description" value="#{msg.description}:" />
+
+					<h:outputLabel for="description" value="#{msg.description}:" />
 					<p:inputText id="description" value="#{createGameBean.description}"
 						required="true" />
 
 					<h:outputLabel for="executableName" value="#{msg.executableName}" />
-					<p:password id="executableName" value="#{createGameBean.executableName}"
-						required="true" feedback="true" />
+					<p:inputText id="executableName"
+						value="#{createGameBean.executableName}" required="true"
+						feedback="true" />
 
 					<h:outputLabel for="imgUri" value="#{msg.imgUri}" />
-					<p:password id="imgUri"
-						value="#{createGameBean.imgUri}" required="true" />
-						
-					<h:outputLabel for="imgUri" value="#{msg.imgUri}" />
-					<p:password id="imgUri"
-						value="#{createGameBean.imgUri}" required="true" />
+					<p:inputText id="imgUri" value="#{createGameBean.imgUri}"
+						required="true" />
+
+					<h:outputLabel for="price" value="#{msg.price}" />
+					<p:inputText id="price" value="#{createGameBean.price}"
+						required="true" />
 
 					<f:facet name="footer">
 						<center>
 							<p:commandButton value="#{msg.register}" type="submit"
-								action="#{loginRegisterBean.register}"  />
-							<p:commandButton value="#{msg.login}" type="submit"
-								action="login.xhtml" immediate="true" />
+								action="#{createGameBean.create()}" />
 						</center>
 					</f:facet>
 

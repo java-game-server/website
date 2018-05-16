@@ -6,6 +6,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.apporelbotna.gameserver.stubs.Game;
 import com.apporelbotna.gameserver.website.model.AuthenticatedUser;
 import com.apporelbotna.gameserver.website.model.dao.WebsiteDAO;
 
@@ -30,8 +31,18 @@ public class CreateGameBean implements Serializable
 
 	public String create()
 	{
+		System.out.println(name);
+		System.out.println(description);
+		System.out.println(executableName);
+		System.out.println(imgUri);
+		System.out.println(price);
 
-		return "gameLibrary?faces-redirect=true";
+		if(websiteDAO.createGame(new Game(null, name, description, executableName, imgUri, price))) {
+			System.out.println("game Stored");
+		}
+
+		return null;
+//		return "gameLibrary?faces-redirect=true";
 	}
 
 	public AuthenticatedUser getAuthenticatedUser()
