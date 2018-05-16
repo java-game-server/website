@@ -2,6 +2,7 @@ package com.apporelbotna.gameserver.website.view;
 
 import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -28,6 +29,13 @@ public class CreateGameBean implements Serializable
 	private String imgUri;
 	private float price;
 
+	@PostConstruct
+	public void init()
+	{
+		if(authenticatedUser.getUser() == null) {
+			//redirect to login screen
+		}
+	}
 
 	public String create()
 	{
@@ -37,12 +45,14 @@ public class CreateGameBean implements Serializable
 		System.out.println(imgUri);
 		System.out.println(price);
 
-		if(websiteDAO.createGame(new Game(null, name, description, executableName, imgUri, price))) {
+		if (websiteDAO.createGame(new Game(null, name, description, executableName, imgUri, price)))
+		{
 			System.out.println("game Stored");
+			//TODO dar feedback
 		}
 
 		return null;
-//		return "gameLibrary?faces-redirect=true";
+		// return "gameLibrary?faces-redirect=true";
 	}
 
 	public AuthenticatedUser getAuthenticatedUser()
