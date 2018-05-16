@@ -26,11 +26,14 @@
 
 					<p:outputPanel>
 						<h:panelGrid columns="2" cellpadding="5">
-							<h:outputText style="font-size: 30px;" value="#{msg.name}:" />
-							<h:outputText style="font-size: 30px;" value="#{game.name}" />
+							<h:outputText style="font-size: 20px;" value="#{msg.name}:" />
+							<h:outputText style="font-size: 20px;" value="#{game.name}" />
 
 							<h:outputText style="font-size: 20px;" value="#{msg.description}:" />
 							<h:outputText style="font-size: 20px;" value="#{game.description}" />
+							
+							<h:outputText style="font-size: 30px;" value="#{msg.price}:" />
+							<h:outputText style="font-size: 30px;" value="#{game.price}" />
 						</h:panelGrid>
 						<p:commandButton style="float:right" value="#{msg.buy}"
 							actionListener="#{shopBean.buy(game)}" />

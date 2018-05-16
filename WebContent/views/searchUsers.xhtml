@@ -13,61 +13,49 @@
 	<ui:define name="content">
 		<h:form id="form">
 			<h2>#{msg.searchUsers}</h2>
-			
-			<p:repeat id="table" value="#{shopBean.games}" var="game">
-				<h:panelGrid columns="2" style="width:100%"
-					columnClasses="logo,detail">
-					<p:commandLink update=":form:gameDetail"
-						oncomplete="PF('gameDialog').show()">
-						<f:setPropertyActionListener value="#{game}"
-							target="#{shopBean.selectedGame}" />
-						<h:graphicImage value="#{game.imgUri}" height="200px" />
-					</p:commandLink>
+			<p:growl id="growl" showDetail="false" sticky="false" life="5000" autoUpdate="true"/>
 
+			<p:dataTable var="user" value="#{searchUsersBean.users}"
+				widgetVar="usersTable"
+				emptyMessage="#{msg.emptyTable}"
+				filteredValue="#{searchUsersBean.filteredUsers}"
+				sortBy="#{user.email}"
+				paginator="true" rows="20">
+
+				<f:facet name="header">
 					<p:outputPanel>
-						<h:panelGrid columns="2" cellpadding="5">
-							<h:outputText style="font-size: 30px;" value="#{msg.name}:" />
-							<h:outputText style="font-size: 30px;" value="#{game.name}" />
-
-							<h:outputText style="font-size: 20px;" value="#{msg.description}:" />
-							<h:outputText style="font-size: 20px;" value="#{game.description}" />
-						</h:panelGrid>
-						<p:commandButton style="float:right" value="#{msg.buy}"
-							action="#{shopBean.buy()}" />
+						<h:outputText value="Search all fields:" />
+						<p:inputText id="globalFilter" onkeyup="PF('usersTable').filter()"
+							style="width:150px" placeholder="Enter keyword" />
 					</p:outputPanel>
-				</h:panelGrid>
-				<hr />
-			</p:repeat>
+				</f:facet>
+				
+				<p:column filterBy="#{user.email}" headerText="#{msg.email}"
+					filterMatchMode="contains" sortBy="#{user.email}">
+					<h:outputText value="#{user.email}" />
+				</p:column>
 
-			<p:dialog header="#{msg.game} #{msg.info}" widgetVar="gameDialog"
-				modal="true" showEffect="blind" hideEffect="explode"
-				resizable="false">
-				<p:outputPanel id="gameDetail" style="text-align:center;">
-					<p:panelGrid columns="2"
-						rendered="#{not empty shopBean.selectedGame}"
-						columnClasses="label,value">
-						<f:facet name="header">
-							<h:graphicImage value="#{game.imgUri}" height="500px" />
-						</f:facet>
+				<p:column filterBy="#{user.name}" headerText="#{msg.name}"
+					filterMatchMode="contains" sortBy="#{user.name}">
+					<h:outputText value="#{user.name}" />
+				</p:column>
 
-						<h:outputText value="#{msg.name}:" />
-						<h:outputText value="#{shopBean.selectedGame.name}" />
+				<p:column filterBy="#{user.gold}" headerText="#{msg.gold}"
+					filterMatchMode="lte" sortBy="#{user.gold}">
+					<f:facet name="filter">
+						<p:spinner onchange="PF('usersTable').filter()"
+							styleClass="year-spinner">
+							<f:converter converterId="javax.faces.Integer" />
+						</p:spinner>
+					</f:facet>
+					<h:outputText value="#{user.gold}" />
+				</p:column>
+				
+				<p:column headerText="#{msg.actions}">
+					<p:commandButton value="#{msg.addFriend}" actionListener="#{searchUsersBean.addFriend(user)}"/>
+				</p:column>
 
-						<h:outputText value="#{msg.genre}:" />
-						<h:outputText value="#{shopBean.selectedGame.genre}" />
-
-						<h:outputText value="#{msg.description}:" />
-						<h:outputText value="#{shopBean.selectedGame.description}" />
-					</p:panelGrid>
-					<br />
-
-					<center>
-						<p:messages id="messages" closable="true" autoUpdate="true"
-							showDetail="true" />
-					</center>
-
-				</p:outputPanel>
-			</p:dialog>
+			</p:dataTable>
 		</h:form>
 	</ui:define>
 </ui:composition>

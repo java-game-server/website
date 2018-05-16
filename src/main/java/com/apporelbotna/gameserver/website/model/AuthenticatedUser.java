@@ -14,6 +14,11 @@ public class AuthenticatedUser
 {
 	private User user;
 
+	public AuthenticatedUser()
+	{
+		// CDI
+	}
+
 	public User getUser()
 	{
 		return user;

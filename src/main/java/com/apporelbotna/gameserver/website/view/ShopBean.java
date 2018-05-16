@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.apporelbotna.gameserver.stubs.Game;
+import com.apporelbotna.gameserver.stubs.User;
 import com.apporelbotna.gameserver.website.model.AuthenticatedUser;
 import com.apporelbotna.gameserver.website.model.dao.WebsiteDAO;
 import com.apporelbotna.gameserver.website.util.Faces;
@@ -68,7 +69,13 @@ public class ShopBean implements Serializable
 
 	public void buy(Game game)
 	{
-		dao.storeGameToUser(authenticatedUser.getUser(), game.getId());
-		Faces.info("You bought " + game.getName() + " for " + game.getPrice() + " golds!");
+		if(dao.storeGameToUser(authenticatedUser.getUser(), game.getId()))
+		{
+			User user = authenticatedUser.getUser();
+			user.setGold(user.getGold() - game.getPrice());
+			Faces.info("You bought " + game.getName() + " for " + game.getPrice() + " golds!");
+		}
+		else
+			Faces.error("You don't have enough money for this game, poor bastard!");
 	}
 }

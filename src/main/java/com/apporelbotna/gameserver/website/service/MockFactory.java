@@ -4,13 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
 import com.apporelbotna.gameserver.stubs.Game;
+import com.apporelbotna.gameserver.stubs.User;
 
 @ApplicationScoped
-public class DummyGameFactory
+public class MockFactory
 {
-	public DummyGameFactory()
+	@Inject
+	private RandomNumberGenerator rng;
+
+	public MockFactory()
 	{
 		// CDI
 	}
@@ -29,5 +34,18 @@ public class DummyGameFactory
 		}
 
 		return games;
+	}
+
+	public List<User> createUsers(int n)
+	{
+		List<User> users = new ArrayList<>();
+		for(int i = 1; i <= n; i++)
+		{
+			User user = new User(i + "dummyuser@warra.com", "Name: " +i);
+			user.setGold(rng.generateRandomNumber(1000));
+			users.add(user);
+		}
+
+		return users;
 	}
 }

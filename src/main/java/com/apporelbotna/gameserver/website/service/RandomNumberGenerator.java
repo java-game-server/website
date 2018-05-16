@@ -12,9 +12,9 @@ public class RandomNumberGenerator
 		// NO PROBLEM MAN
 	}
 
-	public int generateRandomNumber()
+	public int generateRandomNumber(int max)
 	{
 		Random random = new Random();
-		return random.nextInt(10);
+		return random.nextInt(max);
 	}
 }
