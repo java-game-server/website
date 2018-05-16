@@ -10,10 +10,11 @@
 	<ui:define name="title">
 		<h:outputText value="#{msg.appTitle}" />
 	</ui:define>
-	<h1>aaaa</h1>
 	<ui:define name="content">
 		<h:form id="form">
-			<p:repeat value="#{shopBean.games}" var="game">
+			<h2>#{msg.searchUsers}</h2>
+			
+			<p:repeat id="table" value="#{shopBean.games}" var="game">
 				<h:panelGrid columns="2" style="width:100%"
 					columnClasses="logo,detail">
 					<p:commandLink update=":form:gameDetail"

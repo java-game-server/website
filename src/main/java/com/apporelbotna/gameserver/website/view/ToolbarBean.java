@@ -13,11 +13,6 @@ public class ToolbarBean
 	@Inject
 	private AuthenticatedUser authenticatedUser;
 
-	public ToolbarBean()
-	{
-		// CDI Constructor
-	}
-
 	public String logout()
 	{
 		authenticatedUser.setUser(null);

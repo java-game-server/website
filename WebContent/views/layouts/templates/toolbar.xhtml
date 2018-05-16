@@ -20,17 +20,24 @@
 					<p:menuitem value="#{msg.shop}" icon="ui-icon-person"
 						action="shop?faces-redirect=true" ajax="false" />
 
-					<p:menuitem value="#{msg.manageGames}" icon="ui-icon-clipboard"
-						action="storeGame?faces-redirect=true" ajax="false" /> <!-- rendered="#{authenticatedUser.admin}" -->
+					<p:menuitem value="#{msg.searchUsers}" icon="ui-icon-person"
+						action="searchUsers?faces-redirect=true" ajax="false" />
 
-					<p:menuitem value="#{msg.manageUsers}" icon="ui-icon-plus" 
-						action="storeUser?faces-redirect=true" ajax="false" /> <!-- rendered="#{authenticatedUser.admin}" -->
+					<p:menuitem value="#{msg.manageGames}" icon="ui-icon-clipboard"
+						action="manageGames?faces-redirect=true"
+						rendered="#{authenticatedUser.logged and authenticatedUser.admin}" ajax="false" />
+
+					<p:menuitem value="#{msg.manageUsers}" icon="ui-icon-plus"
+						action="manageUsers?faces-redirect=true"
+						rendered="#{authenticatedUser.logged and authenticatedUser.admin}" ajax="false" />
 				</p:menubar>
 			</p:toolbarGroup>
 
 			<p:toolbarGroup align="right" styleClass="toolbarRight">
 				<p:menubar>
-					<p:submenu icon="ui-icon-person"> <!-- label="#{authenticatedUser.user.name}" -->
+					<p:submenu
+						label="#{authenticatedUser.logged ? authenticatedUser.user.name : log} - #{msg.gold}: #{authenticatedUser.logged ? authenticatedUser.user.gold : log}"
+						icon="ui-icon-person">
 						<p:menuitem value="Logout" action="#{toolbarBean.logout}"
 							ajax="false" />
 					</p:submenu>

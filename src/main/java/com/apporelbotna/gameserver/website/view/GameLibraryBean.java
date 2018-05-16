@@ -11,7 +11,6 @@ import javax.inject.Named;
 import com.apporelbotna.gameserver.stubs.Game;
 import com.apporelbotna.gameserver.website.model.AuthenticatedUser;
 import com.apporelbotna.gameserver.website.model.dao.WebsiteDAO;
-import com.apporelbotna.gameserver.website.service.DummyGameFactory;
 import com.apporelbotna.gameserver.website.util.Faces;
 
 @Named
@@ -21,27 +20,25 @@ public class GameLibraryBean implements Serializable
 	private static final long serialVersionUID = -2966068452310876590L;
 
 	@Inject
-	AuthenticatedUser authenticatedUser;
+	private AuthenticatedUser authenticatedUser;
 
 	@Inject
 	private WebsiteDAO websiteDAO;
 
-	@Inject
-	private DummyGameFactory dummyGameFactory;
-
-	private List<Game> games;
-	private Game selectedGame;
-
-	public GameLibraryBean()
-	{
-		// CDI
-	}
+	private transient List<Game> games;
+	private transient Game selectedGame;
 
 	@PostConstruct
 	public void init()
 	{
-		// games = dummyGameFactory.createGames(50);
+		if( ! authenticatedUser.isLogged())
+			Faces.redirect(LoginRegisterBean.PAGE_NAME);
 		games = websiteDAO.findAllGamesByUser(authenticatedUser.getUser());
+	}
+
+	public boolean isLibraryEmpty()
+	{
+		return games == null || games.isEmpty();
 	}
 
 	public List<Game> getGames()

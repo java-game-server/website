@@ -17,6 +17,9 @@ import com.apporelbotna.gameserver.website.util.Faces;
 public class LoginRegisterBean implements Serializable
 {
 	private static final long serialVersionUID = -3970262675842802311L;
+
+	public static final String PAGE_NAME = "login";
+
 	@Inject
 	private AuthenticatedUser authenticatedUser;
 
@@ -64,11 +67,6 @@ public class LoginRegisterBean implements Serializable
 	public void setEmail(String email)
 	{
 		this.email = email;
-	}
-
-	public LoginRegisterBean()
-	{
-		// CDI constructor
 	}
 
 	public String getUsername()

@@ -7,17 +7,19 @@
 
 <ui:composition template="layouts/templates/defaultLayout.xhtml">
 	<ui:define name="title">
-		<h:outputText value="#{msg.appTitle}" />
+		<h:outputText value="#{msg.appTitle} #{msg.yourGames}" />
 	</ui:define>
 
 	<ui:define name="content">
 		<h:form id="form">
+			<h2>#{msg.yourGames}</h2>
+			<h:outputText rendered="#{gameLibraryBean.libraryEmpty}" value="#{msg.emptyTable}" />
 			<p:repeat value="#{gameLibraryBean.games}" var="game">
 				<p:commandLink update=":form:gameDetail"
 					oncomplete="PF('gameDialog').show()">
 					<f:setPropertyActionListener value="#{game}"
 						target="#{gameLibraryBean.selectedGame}" />
-						
+
 					<h:panelGrid columns="2" style="width:100%"
 						columnClasses="logo,detail">
 
@@ -28,13 +30,15 @@
 								<h:outputText style="font-size: 30px;" value="#{msg.name}:" />
 								<h:outputText style="font-size: 30px;" value="#{game.name}" />
 
-								<h:outputText style="font-size: 20px;" value="#{msg.description}:" />
-								<h:outputText style="font-size: 20px;" value="#{game.description}" />
+								<h:outputText style="font-size: 20px;"
+									value="#{msg.description}:" />
+								<h:outputText style="font-size: 20px;"
+									value="#{game.description}" />
 							</h:panelGrid>
 						</p:outputPanel>
 
 					</h:panelGrid>
-					
+
 				</p:commandLink>
 				<hr />
 			</p:repeat>

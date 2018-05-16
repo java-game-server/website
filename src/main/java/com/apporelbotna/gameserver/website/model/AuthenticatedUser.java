@@ -12,30 +12,30 @@ import com.apporelbotna.gameserver.stubs.User;
 @ApplicationScoped
 public class AuthenticatedUser
 {
-    private User user;
+	private User user;
 
-    public AuthenticatedUser()
-    {
-	// CDI constructor
-    }
+	public User getUser()
+	{
+		return user;
+	}
 
-    public User getUser()
-    {
-	return user;
-    }
+	public void setUser(User user)
+	{
+		this.user = user;
+	}
 
-    public void setUser(User user)
-    {
-	this.user = user;
-    }
+	public List<Game> getGames()
+	{
+		return user.getGames();
+	}
 
-    public List< Game > getGames()
-    {
-	return user.getGames();
-    }
+	public boolean isAdmin()
+	{
+		return user.isAdmin();
+	}
 
-    public boolean isAdmin()
-    {
-	return user.isAdmin();
-    }
+	public boolean isLogged()
+	{
+		return user != null;
+	}
 }

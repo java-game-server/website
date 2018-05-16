@@ -8,11 +8,12 @@
 
 <ui:composition template="layouts/templates/defaultLayout.xhtml">
 	<ui:define name="title">
-		<h:outputText value="#{msg.appTitle}" />
+		<h:outputText value="#{msg.appTitle} #{msg.shop}" />
 	</ui:define>
-	<h1>aaaa</h1>
 	<ui:define name="content">
 		<h:form id="form">
+			<h2>#{msg.shop}</h2>
+			<p:growl id="growl" showDetail="false" sticky="false" life="3000" autoUpdate="true"/>
 			<p:repeat value="#{shopBean.games}" var="game">
 				<h:panelGrid columns="2" style="width:100%"
 					columnClasses="logo,detail">
@@ -32,7 +33,7 @@
 							<h:outputText style="font-size: 20px;" value="#{game.description}" />
 						</h:panelGrid>
 						<p:commandButton style="float:right" value="#{msg.buy}"
-							action="#{shopBean.buy(game)}" />
+							actionListener="#{shopBean.buy(game)}" />
 					</p:outputPanel>
 				</h:panelGrid>
 				<hr />
@@ -57,14 +58,7 @@
 
 						<h:outputText value="#{msg.description}:" />
 						<h:outputText value="#{shopBean.selectedGame.description}" />
-					</p:panelGrid>
-					<br />
-
-					<center>
-						<p:messages id="messages" closable="true" autoUpdate="true"
-							showDetail="true" />
-					</center>
-
+					</p:panelGrid><br />
 				</p:outputPanel>
 			</p:dialog>
 		</h:form>

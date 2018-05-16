@@ -11,6 +11,7 @@ import javax.inject.Named;
 import com.apporelbotna.gameserver.stubs.Game;
 import com.apporelbotna.gameserver.website.model.AuthenticatedUser;
 import com.apporelbotna.gameserver.website.model.dao.WebsiteDAO;
+import com.apporelbotna.gameserver.website.util.Faces;
 
 @Named
 @ViewScoped
@@ -24,17 +25,14 @@ public class ShopBean implements Serializable
 	@Inject
 	private AuthenticatedUser authenticatedUser;
 
-	private Game selectedGame;
-	private List<Game> games;
-
-	public ShopBean()
-	{
-		// CDI constructor
-	}
+	private transient Game selectedGame;
+	private transient List<Game> games;
 
 	@PostConstruct
 	public void init()
 	{
+		if( ! authenticatedUser.isLogged())
+			Faces.redirect(LoginRegisterBean.PAGE_NAME);
 		games = dao.getAllGames();
 	}
 
@@ -70,8 +68,7 @@ public class ShopBean implements Serializable
 
 	public void buy(Game game)
 	{
-
 		dao.storeGameToUser(authenticatedUser.getUser(), game.getId());
-		// TODO dar FeedBack
+		Faces.info("You bought " + game.getName() + " for " + game.getPrice() + " golds!");
 	}
 }

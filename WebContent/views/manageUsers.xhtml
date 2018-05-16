@@ -8,43 +8,43 @@
 
 <ui:composition template="layouts/templates/defaultLayout.xhtml">
 	<ui:define name="title">
-		<h:outputText value="#{msg.appTitle} #{msg.createGame}" />
+		<h:outputText value="#{msg.appTitle} #{msg.manageUsers}" />
 	</ui:define>
 
 	<ui:define name="content">
 		<h:form id="formLogin" prependId="false">
 			<center>
 				<h2>#{msg.newAccount}</h2>
-				<p:messages id="messages" closable="true" autoUpdate="true" />
+				<p:growl id="growl" showDetail="false" sticky="false" life="3000" autoUpdate="true"/>
 
 				<p:panelGrid columns="2">
 					<f:facet name="header">#{msg.newAccount}</f:facet>
 
 					<h:outputLabel for="email" value="#{msg.email}" />
-					<p:inputText id="email" value="#{createUserBean.email}"
+					<p:inputText id="email" value="#{manageUsersBean.user.email}"
 						required="true" />
 
 					<h:outputLabel for="name" value="#{msg.name}:" />
-					<p:inputText id="name" value="#{createUserBean.name}"
+					<p:inputText id="name" value="#{manageUsersBean.user.name}"
 						required="true" />
 
 					<h:outputLabel for="password" value="#{msg.password}" />
 					<p:password id="password"
-						value="#{createUserBean.password}" required="true"
+						value="#{manageUsersBean.password}" required="true"
 						feedback="true" />
 
-					<h:outputLabel for="isAdmin" value="#{msg.AdministratorType}" />
-					<p:selectBooleanCheckbox id="isAdmin" value="#{createUserBean.admin}"
+					<h:outputLabel for="isAdmin" value="#{msg.administratorType}" />
+					<p:selectBooleanCheckbox id="isAdmin" value="#{manageUsersBean.admin}"
 						required="true" />
 
-					<h:outputLabel for="gold" value="#{msg.gold}" />
-					<p:inputText id="gold" value="#{createUserBean.gold}"
+					<h:outputLabel for="gold" value="#{msg.initialGold}" />
+					<p:inputText id="gold" value="#{manageUsersBean.user.gold}"
 						required="true" />
 
 					<f:facet name="footer">
 						<center>
 							<p:commandButton value="#{msg.register}" type="submit"
-								action="#{createUserBean.create()}" />
+								actionListener="#{manageUsersBean.create}" />
 						</center>
 					</f:facet>
 
