@@ -68,13 +68,13 @@ public class ShopBean implements Serializable
 		this.selectedGame = selectedGame;
 	}
 
-	public void buy()
+	public void buy(Game game)
 	{
 		// TODO arreglar este null en selectedGame.getId()
 		// solo pasa si no se le da a la foto porque no se guarda el juego
-		System.out.println(selectedGame.getId());
+		System.out.println(game);
 		System.out.println("Buyed");
-		dao.storeGameToUser(authenticatedUser.getUser(), selectedGame.getId());
+		dao.storeGameToUser(authenticatedUser.getUser(), game.getId());
 		// TODO dar FeedBack
 	}
 }
